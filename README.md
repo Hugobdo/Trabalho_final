@@ -21,7 +21,9 @@ Como temos um problema binário, por natureza teremos 50% de acertos. Entretanto
 
 Dessa forma, a ideia é tentar modelar uma série temporal aparentemente aleatória (que, na verdade, parece ser uma série temporal com tendências e MUITO ruído) e conseguir um modelo em que a acurácia seja superior aos 53% mínimos
 
-![terminal](imgs/result_binary.png)
+O projeto está atualmente seguindo o seguinte fluxo:
+
+![projeto](imgs/flowchart.jpg)
 
 ## Conteúdo
 - [Setup](#Setup)
@@ -43,7 +45,10 @@ Para instalar as dependências:
 pip install -r requirements.txt
 ```
 
-O acompanhamento do modelo está sendo feito pelo PowerBI, então, caso queria acompanhar os logs, é necessário instalar o PowerBI Desktop e configurar o caminho do arquivo log.txt para o seu computador.
+Para essa versão está sendo utilizado o MongoDB para armazenar os dados. Para instalar o MongoDB, siga as instruções do site oficial: https://docs.mongodb.com/manual/installation/
+Você também precisará criar o banco de dados 'binary_bot' e as collections 'EURUSD', 'EURUSD_OTC' e 'operations'. Todas são collections de time-series. O campo de data das duas primeiras deve ser 'from_datetime' e, da terceira, 'datetime'
+
+O acompanhamento do modelo ainda está sendo feito pelo PowerBI, então, caso queria acompanhar os logs, é necessário instalar o PowerBI Desktop e configurar o MongoODBC Driver.
 
 ## Dados
 
@@ -56,7 +61,7 @@ Para efeito de teste foi criado o usuário 'ml.puc.teste@hotmail.com' e senha 'p
 No arquivo robot.py encontrará todas as etapas de extração dos dados da API, feature engineering e treino/retreino do modelo.
 Adicionei comentários a cada etapa para facilitar a compreensão do código e explicitar a linha de pensamento nos momentos
 
-Está sendo utilizado uma RNN com LSTM para tentar modelar a série temporal. Nessa implementação estão sendo utilizados poucos dados da API somente para efeito de demonstração (porém a acurácia no projeto real está igualmente ruim kkkkk)
+Está sendo utilizado uma RNN com LSTM para tentar modelar a série temporal.
 
 ## License
 
